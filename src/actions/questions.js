@@ -1,4 +1,4 @@
-import { _saveQuestion } from '../utils/_DATA'
+import { _saveQuestion, _getQuestions } from '../utils/_DATA'
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
 export const CREATE_QUESTION = "CREATE_QUESTION"
 
@@ -9,6 +9,13 @@ export function receiveQuestions(questions){
     }
 }
 
+export function getQuestions(){
+    return (dispatch) => {
+        return _getQuestions()
+            .then(questions => dispatch(receiveQuestions(questions)))
+    }
+}
+
 export function createQuestion(question){
     return{
         type: CREATE_QUESTION,
@@ -16,9 +23,9 @@ export function createQuestion(question){
     }
 }
 
-export function saveQuestion(optOne, optTwo, author){
+export function saveQuestion(question){
     return (dispatch) => {
-        return _saveQuestion({ optOne, optTwo, author})
-            .then(question => dispatch(createQuestion(question)))
+        return _saveQuestion(question)
+            .then(questionReturned => dispatch(createQuestion(questionReturned)))
     }
 }

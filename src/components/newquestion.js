@@ -10,9 +10,8 @@ class Newquestion extends Component {
     }
     submitQuestion = (e) => {
         e.preventDefault()
-        const optOne = this.state.optOneVal
-        const optTwo = this.state.optTwoVal
-        this.props.dispatch(saveQuestion(optOne, "optTwo", "tylermcginnis"))
+        const question = {optionOneText: this.state.optOneVal, optionTwoText: this.state.optTwoVal, author: "tylermcginnis"}
+        this.props.dispatch(saveQuestion(question))
     }
     handleChange1 = (e) => {
         this.setState({
@@ -55,8 +54,9 @@ class Newquestion extends Component {
     }
 }
 
-function mapStateToProps({ questions }){
+function mapStateToProps({ users, questions }){
     return{
+        users,
         questions
     }
 }

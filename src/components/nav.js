@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import reactredux from '../utils/reactredux.png'
 import { Card, Button, Row, Container, Col, Form } from 'react-bootstrap';
 
-class Viewpoll extends Component {
+class Nav extends Component {
     render() {
         return (
             <Container fluid>
@@ -56,4 +56,4 @@ class Viewpoll extends Component {
     }
 }
 
-export default Viewpoll
+export default Nav

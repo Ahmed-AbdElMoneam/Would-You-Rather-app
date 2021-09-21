@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Container, Col, Tabs, Tab } from 'react-bootstrap';
 import Askcard from './askcard'
+import { connect } from 'react-redux'
 
 class Home extends Component {
     render() {
@@ -13,7 +14,13 @@ class Home extends Component {
                                 <Askcard/>
                             </Tab>
                             <Tab eventKey="profile" title="answered">
-                                <Askcard/>
+                                {this.props.questionIDs.map(questionID => {
+                                    return(
+                                        <Askcard 
+                                            key={questionID} 
+                                            id={questionID} />
+                                    )
+                                })}
                             </Tab>
                         </Tabs>
                     </Col>
@@ -23,4 +30,13 @@ class Home extends Component {
     }
 }
 
-export default Home
+function mapStateToProps({ questions, users }){
+    return{
+        questionIDs: Object.keys(questions)
+            .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+        questions,
+        users
+    }
+}
+
+export default connect(mapStateToProps)(Home)
