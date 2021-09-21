@@ -5,6 +5,7 @@ import { Card, Button, Row, Container, Col, Form } from 'react-bootstrap';
 
 class Sign extends Component {
     render() {
+        //console.log("dvhbjvfv is ", this.props.usersN)
         return (
             <Container fluid>
                 <Row className="justify-content-center">
@@ -19,15 +20,12 @@ class Sign extends Component {
                                 <Card.Title className="text-success">Sign in</Card.Title>
                                 <Form>
                                     <Form.Select aria-label="Default select example">
-                                        {this.props.users.map((user)=> {
+                                        {this.props.userArray.map((user)=> {
+                                            console.log(this.props.userArray)
                                             return(
                                                 <option key={user.id} value={user.id}>{user.name}</option>
                                             )
                                         })}
-                                        <option>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
                                     </Form.Select>
                                     <br />
                                     <Button className="w-100" size="lg" variant="success">Sign in</Button>
@@ -43,7 +41,7 @@ class Sign extends Component {
 
 function mapStateToProps({ users }){
     return{
-        users
+        userArray: Object.values(users)
     }
 }
 

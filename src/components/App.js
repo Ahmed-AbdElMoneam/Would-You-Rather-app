@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { getUsers } from '../actions/users'
 import { connect } from 'react-redux'
-import Sign from "./sign"
+import Newquestion from "./newquestion"
 
 class App extends Component {
   componentDidMount(){
@@ -10,10 +10,19 @@ class App extends Component {
   render(){
     return(
       <div>
-        <Sign />
+        {this.props.loading === true 
+          ? null
+          : <Newquestion /> 
+        }
       </div>
     )
   }
 }
 
-export default connect()(App)
+function mapStateToProps({ users }){
+  return{
+    loading: users === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
