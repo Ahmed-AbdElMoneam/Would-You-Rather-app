@@ -1,6 +1,7 @@
 import sarah from './sarah.svg'
 import tyler from './tyler.svg'
 import john from './john.svg'
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
