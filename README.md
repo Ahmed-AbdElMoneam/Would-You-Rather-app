@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Would You Rather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+* Project files & folders
+* Built With
+* Project description
+* Screenshots
+* Installation & Software Requirements
+* Compatibility
+* Contact
+* Resources
+* Useful Links
 
-In the project directory, you can run:
+## Project files & folders
 
-### `yarn start`
+###  node_modules
+###  public
+* favicon.ico
+* index.html
+* logo192.png
+###  src
+#### - components
+* 404.js
+* App.js
+* askcard.js
+* home.js
+* leaderboard.js
+* nav.js
+* newquestion.js
+* results.js
+* sign.js
+* viewpoll.js
+#### - actions
+* loggedInUser.js
+* questions.js
+* storeId.js
+* users.js
+#### - middleware
+* index.js
+* logger.js
+#### - reducers
+* index.js
+* loggedInUser.js
+* question.js
+* storeId.js
+* users.js
+#### - utils
+* PrivateRoute.js
+* _DATA.js
+* john.svg
+* reactredux.png
+* sarah.svg
+* tyler.svg
+#### - index.js
+#### - index.css
+###  .gitignore
+###  package-lock.json
+###  package.json
+###  README.md
+###  yarn.lock
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Built With
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* create-react-app(starter code for react.js applications introduced from facebook.com)
+* Redux state management library
 
-### `yarn test`
+## Project description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Would You Rather App is a react.js and redux application enables group of users to sign in and enjoy would you rather game. The user can create questions and answer questions. Each user has a score which increase when he create questions or answer them.
 
-### `yarn build`
+## Screenshots
+![11](https://user-images.githubusercontent.com/68257208/134450799-761af25a-d682-4cd8-8565-9db6ffade071.png)
+![22](https://user-images.githubusercontent.com/68257208/134450807-fd64abfc-4ed3-47d2-a8bf-1227fec3c53f.png)
+![33](https://user-images.githubusercontent.com/68257208/134450821-a2a35356-a97a-4a36-9e3f-b681557d8662.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation & Software Requirements
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Open your `cmd`
+2. `cd` to your project folder
+3. Write `npm install` and wait
+4. Write `npm start` to start your server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Compatibility
 
-### `yarn eject`
+All features are usable across modern desktop, tablet, and phone browsers
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Contact
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* ### Ahmed Mohamed
+* ### ahmedabdelmoneam755@gmail.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Resources
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* MDN
+* Udacity Front End Web Development Advanced Nanodegree Program
+* reactjs.org
 
-## Learn More
+## Useful Links
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* https://react-redux.js.org/introduction/getting-started
+* https://redux.js.org/introduction/getting-started
+* https://react-bootstrap.github.io/getting-started/introduction
