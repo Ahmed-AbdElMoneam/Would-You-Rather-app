@@ -1,6 +1,28 @@
-import { _saveQuestion, _getQuestions } from '../utils/_DATA'
+import {  _saveQuestionAnswer, _getQuestions, _saveQuestion } from '../utils/_DATA'
+export const SAVE_QUESTION = "SAVE_QUESTION"
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
 export const CREATE_QUESTION = "CREATE_QUESTION"
+
+export function storedQuestion({ authedUser, qid, answer }){
+    return{
+        type: SAVE_QUESTION,
+        authedUser,
+        qid,
+        answer
+    }
+}
+
+export function storeQuestion(answer){
+    return (dispatch, getState) => {
+        const { setLoggedUser, storeId } = getState()
+        return _saveQuestionAnswer({
+            authedUser: setLoggedUser,
+            qid: storeId,
+            answer
+        })
+            .then(() => dispatch(storedQuestion({ authedUser: setLoggedUser, qid: storeId, answer })))
+    }
+}
 
 export function receiveQuestions(questions){
     return{

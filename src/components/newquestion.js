@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Card, Button, Row, Container, Col, Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { Card, Button, Row, Container, Col, Form } from 'react-bootstrap'
+
 import { saveQuestion } from '../actions/questions'
 
 class Newquestion extends Component {
@@ -10,8 +11,13 @@ class Newquestion extends Component {
     }
     submitQuestion = (e) => {
         e.preventDefault()
-        const question = {optionOneText: this.state.optOneVal, optionTwoText: this.state.optTwoVal, author: "tylermcginnis"}
+        const question = {
+            optionOneText: this.state.optOneVal, 
+            optionTwoText: this.state.optTwoVal, 
+            author: this.props.setLoggedUser
+        }
         this.props.dispatch(saveQuestion(question))
+        this.props.history.push("/questions")
     }
     handleChange1 = (e) => {
         this.setState({
@@ -28,7 +34,7 @@ class Newquestion extends Component {
             <Container fluid>
                 <Row className="justify-content-center">
                     <Col xs={6} >
-                        <Card className="">
+                        <Card>
                             <Card.Title className="text-center mt-3"><h2>Create New Question</h2></Card.Title>
                             <hr />
                             <Card.Body>
@@ -36,14 +42,28 @@ class Newquestion extends Component {
                                 <Card.Title><b>Would you rather...</b></Card.Title>
                                 <br />
                                 <Form className="text-center">
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Control type="text" value={this.state.optOneVal} onChange={this.handleChange1} placeholder="Enter option one text here" />
+                                    <Form.Group className="mb-3" controlId="choiceOne">
+                                        <Form.Control 
+                                            type="text" 
+                                            value={this.state.optOneVal} 
+                                            onChange={this.handleChange1} 
+                                            placeholder="Enter option one text here" />
                                     </Form.Group>
-                                    <b >OR</b>
-                                    <Form.Group className="mb-3 mt-3" controlId="formBasicPassword">
-                                        <Form.Control type="text" value={this.state.optTwoVal} onChange={this.handleChange2} placeholder="Enter option two text here" />
+                                    <b>OR</b>
+                                    <Form.Group className="mb-3 mt-3" controlId="choiceTwo">
+                                        <Form.Control 
+                                            type="text" 
+                                            value={this.state.optTwoVal} 
+                                            onChange={this.handleChange2} 
+                                            placeholder="Enter option two text here" />
                                     </Form.Group>
-                                    <Button variant="success" className="w-100" type="submit" onClick={this.submitQuestion}>Submit</Button>
+                                    <Button 
+                                        variant="success" 
+                                        className="w-100"
+                                        type="submit" 
+                                        onClick={this.submitQuestion}
+                                    >Submit
+                                    </Button>
                                 </Form>
                             </Card.Body>
                         </Card>
@@ -54,10 +74,9 @@ class Newquestion extends Component {
     }
 }
 
-function mapStateToProps({ users, questions }){
+function mapStateToProps({ setLoggedUser }){
     return{
-        users,
-        questions
+        setLoggedUser: setLoggedUser ? setLoggedUser : "user"
     }
 }
 

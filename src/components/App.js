@@ -1,51 +1,54 @@
 import React, { Component } from 'react'
-import { getUsers } from '../actions/users'
 import { connect } from 'react-redux'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
+
 import NavBar from "./nav"
 import Sign from "./sign"
 import Home from './home'
 import Newquestion from './newquestion'
 import Leaderboard from './leaderboard'
+import Viewpoll from './viewpoll'
+import Results from './results'
 import PageNotFound from './404'
+
+import { getUsers } from '../actions/users'
 import { getQuestions } from '../actions/questions'
-import { Route, Fragment, Switch } from 'react-router-dom'
-import { BrowserRouter } from 'react-router-dom'
-import ProtectedRoute from '../utils/ProtectedRoute'
+
+import PrivateRoute from '../utils/PrivateRoute'
 
 class App extends Component {
   componentDidMount(){
     this.props.dispatch(getUsers())
     this.props.dispatch(getQuestions())
-    //this.props.dispatch(setLoggedUser(loggedInUser))
   }
   render(){
-    console.log(this.props.setLoggedUser)
     return(
-      <BrowserRouter>
-        {this.props.setLoggedUser 
-          
-          ? <div>
+      <div>
+        {this.props.loadingUsers === true && this.props.loadingQuestions === true
+          ? null
+          : <BrowserRouter>
               <NavBar />
               <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/newQuestion" component={Newquestion}/>
-                <Route exact path="/leaderboard" component={Leaderboard}/>
-                <Route path="/404" component={PageNotFound}/>
+                <Route exact path="/" component={Sign}/>
+                <PrivateRoute exact path="/questions" component={Home}/>
+                <PrivateRoute exact path="/add" component={Newquestion}/>
+                <PrivateRoute exact path="/leaderboard" component={Leaderboard}/>
+                <PrivateRoute exact path={`/questions/${this.props.id}`} component={Viewpoll}/>
+                <PrivateRoute exact path="/results" component={Results}/>
+                <Route path="*" component={PageNotFound}/>
               </Switch>
-            </div>
-          : <Sign />
+            </BrowserRouter>
         }
-      </BrowserRouter>
+      </div>
     )
   }
 }
 
-function mapStateToProps({ questions, users, setLoggedUser }){
+function mapStateToProps({ questions, users, storeId }){
   return{
-    /*loading: questions === null,
-    loading1: users === null,*/
-    loading: setLoggedUser === null,
-    setLoggedUser
+    loadingUsers: users === null,
+    loadingQuestions: questions === null,
+    id: storeId ? storeId : ''
   }
 }
 

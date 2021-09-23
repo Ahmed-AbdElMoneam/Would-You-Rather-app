@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
-import reactredux from '../utils/reactredux.png'
-import { Card, Button, Row, Container, Col, Nav } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Row, Container, Nav } from 'react-bootstrap'
+
+import { setLoggedUser } from '../actions/loggedInUser'
 
 class NavBar extends Component {
+    handleLog = () =>{
+        this.props.dispatch(setLoggedUser(''))
+    }
     render() {
         return (
             <Container fluid>
-                <Row className="justify-content-center pt-2 pl-2">
-                    <Nav variant="pills">
-                        <Nav.Item>
-                            <Nav.Link href="/">Home</Nav.Link>
+                <Row className="justify-content-center">
+                    <Nav variant="pills" className="justify-content-center">
+                        <Nav.Item className="navLinks">
+                            <Link to="/questions">Home</Link>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/newQuestion" >New Question</Nav.Link>
+                        <Nav.Item className="navLinks">
+                            <Link to="/add">New Question</Link>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/leaderboard">Leader Board</Nav.Link>
+                        <Nav.Item className="navLinks">
+                            <Link to="/leaderboard">Leader Board</Link>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link disabled>{`Hello, ${this.props.setLoggedUser}`}</Nav.Link>
+                        <Nav.Item id="btnHelloOut" className="navLinks">
+                            <button disabled id="btnHello">{`Hello ${this.props.userName}`}</button>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/login">Logout</Nav.Link>
+                        <Nav.Item className="navLinks">
+                            <Link to="/" onClick={this.handleLog}>Logout/Login</Link>
                         </Nav.Item>
                     </Nav>
                 </Row>
@@ -32,9 +37,9 @@ class NavBar extends Component {
     }
 }
 
-function mapStateToProps({ setLoggedUser }){
+function mapStateToProps({ users, setLoggedUser }){
     return{
-        setLoggedUser: setLoggedUser ? setLoggedUser : 'Please sign in'
+        userName: setLoggedUser ? users[setLoggedUser].name : ''
     }
 }
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Row, Container, Col, Tabs, Tab } from 'react-bootstrap';
-import Askcard from './askcard'
 import { connect } from 'react-redux'
+import { Row, Container, Col, Tabs, Tab } from 'react-bootstrap';
+
+import Askcard from './askcard'
 
 class Home extends Component {
     render() {
@@ -9,16 +10,26 @@ class Home extends Component {
             <Container fluid>
                 <Row className="justify-content-center">
                     <Col xs={8} >
-                        <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
-                            <Tab eventKey="home" title="unanswered">
-                                <Askcard/>
-                            </Tab>
-                            <Tab eventKey="profile" title="answered">
-                                {this.props.questionIDs.map(questionID => {
+                        <Tabs defaultActiveKey="unanswered" id="tab" className="mb-3">
+                            <Tab eventKey="unanswered" title="Unanswered Questions">
+                                {this.props.orderedUnansweredQuestionsIDs.map((questionID, index) => {
                                     return(
                                         <Askcard 
                                             key={questionID} 
-                                            id={questionID} />
+                                            id={questionID}
+                                            order={index} 
+                                        />
+                                    )
+                                })}
+                            </Tab>
+                            <Tab eventKey="answered" title="Answered Questions">
+                                {this.props.orderedAnsweredQuestionsIDs.map((questionID, index) => {
+                                    return(
+                                        <Askcard 
+                                            key={questionID} 
+                                            id={questionID}
+                                            order={index} 
+                                        />
                                     )
                                 })}
                             </Tab>
@@ -30,12 +41,18 @@ class Home extends Component {
     }
 }
 
-function mapStateToProps({ questions, users }){
+function mapStateToProps({ questions, users, setLoggedUser }){
+    const answeredQuestionsIDs = (users&&setLoggedUser) ? 
+        Object.keys(users[setLoggedUser].answers) : []
+    const unansweredQuestionsIDs = (users&&setLoggedUser&&questions) ? 
+        Object.keys(questions).filter(id => !answeredQuestionsIDs.includes(id)) : []
     return{
-        questionIDs: Object.keys(questions)
+        orderedAnsweredQuestionsIDs: answeredQuestionsIDs
             .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-        questions,
-        users
+        orderedUnansweredQuestionsIDs: unansweredQuestionsIDs
+            .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+        questionIDs: Object.keys(questions)
+            .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
     }
 }
 

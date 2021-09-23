@@ -7,5 +7,38 @@ body {
 
 .cardsplitter {
   border: 1px solid black;
-  /*border-right-style: solid;*/
+}
+
+.navLinks {
+  margin: 1em 2em 0.5em 2em;
+  padding: 1em;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.navLinks:hover {
+  background-color: #0275d8;
+  border-radius: 4px;
+  color: white;
+}
+
+.navLinks > a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navLinks > a:hover {
+  color: white;
+}
+
+#btnHello {
+  background-color: white;
+  font-family: "Be Vietnam Pro", sans-serif;
+  border: none;
+  color: rgb(62, 126, 54);
+  font-weight: bold;
+}
+
+#btnHelloOut:hover {
+  background-color: white;
 }

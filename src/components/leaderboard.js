@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Card, Row, Container, Col } from 'react-bootstrap';
 import { connect } from 'react-redux'
+import { Card, Row, Container, Col } from 'react-bootstrap';
 
 class Leaderboard extends Component {
     render() {
@@ -29,7 +29,10 @@ class Leaderboard extends Component {
                                             <Col className="cardsplitter p-2" xs={3}>
                                                 <Card>
                                                     <Card.Header>Score</Card.Header>
-                                                    <Card.Text>{parseInt(user.questions.length) + parseInt(Object.keys(user.answers).length)}</Card.Text>
+                                                    <Card.Text>
+                                                        {parseInt(user.questions.length) + 
+                                                        parseInt(Object.keys(user.answers).length)}
+                                                    </Card.Text>
                                                 </Card>
                                             </Col>
                                         </Row>
